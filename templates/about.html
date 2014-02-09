@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>BtheArts</title>
+    <title>UCB Bridging the Arts: BtheArts</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Loading Bootstrap -->
@@ -22,11 +22,11 @@
     <div class="container">
       <div id="tippity-top">
         <div class="demo-headline">
-          <h1 class="demo-logo">
+          <a href="/" style="text-decoration: none; color: #34495e"><h1 class="demo-logo">
   <!--           <div class="logo"></div> -->
             UCB Bridging the Arts
             <small style="font-size: 42px;">BtheArts</small>
-          </h1>
+          </h1></a>
         </div> <!-- /demo-headline -->
 
         <!-- <h1>Basic elements</h1> -->
@@ -72,41 +72,38 @@
                   <div class="nav-collapse collapse" id="nav-collapse-01">
                     <ul class="nav">
                       <li class="nav-buttonr"> <!-- class="active" highlights it -->
-                        <a href="/about">
+                        <a href="/teachers">
                           Schools & Educators
                           <!-- <span class="navbar-unread">1</span> -->
                         </a>
                         <ul class="lefty">
-                          <li><a href="/about">Teachers</a></li>
-   <!--                        <li>
-                            <a href="#fakelink">Sub menu</a>
-                            <ul>
-                              <li><a href="#fakelink">Element One</a></li>
-                              <li><a href="#fakelink">Element Two</a></li>
-                              <li><a href="#fakelink">Element Three</a></li>
-                            </ul> 
-                          </li> -->
-                          <li><a href="/about">Principals</a></li>
-                          <li><a href="/about">Application for Artsbridge</a></li>
-                          <li><a href="/about">Program Evaluation</a></li>
+                          <li><a href="/teachers">Teachers</a></li>
+                          <li><a href="/principals">Principals</a></li>
+                          <li><a href="/application">Application for Artsbridge</a></li>
+                          <li><a href="/progeval">Program Evaluation</a></li>
                         </ul> <!-- /Sub menu -->
                       </li>
                       <li class="nav-buttonr">
-                        <a href="/about">
-                          UCB Students
-                          <!-- <span class="navbar-unread">1</span> -->
-                        </a>
+                        <a href="/students">UCB Students</a>
+                        <ul class="lefty">
+                          <li><a href="/studapplication">Application</a></li>
+                          <li><a href="/studcontract">Contract</a></li>
+                          <li><a href="/lessonplantemplate">Lesson Plan Template</a></li>
+                          <li><a href="/samplelessonplans">Sample Lesson Plans</a></li>
+                          <li><a href="/planningcurriculum">Planning Your Curriculum</a></li>
+                          <li><a href="/postproject">Post Your '@home' Project</a></li>
+                        </ul> <!-- /Sub menu -->
                       </li>
                       <li class="nav-buttonr">
-                        <a href="/about">
-                          K-12 Students & Families
-                          <!-- <span class="navbar-unread">1</span> -->
-                        </a>
+                        <a href="/families">K-12 Students & Families</a>
+                        <ul class="lefty">
+                          <li><a href="/projects">@home Projects</a></li>
+                          <li><a href="/gallery">@home Gallery</a></li>
+                          <li><a href="/feedback">Feedback</a></li>
+                        </ul> <!-- /Sub menu -->
                       </li>
-                      <li class="nav-buttonr">
-                        <a href="/about">
-                          About
-                        </a>
+                      <li class="active nav-buttonr">
+                        <a href="/about">About</a>
                       </li>
                     </ul>
                   </div><!--/.nav -->
@@ -619,9 +616,13 @@
 
         <div class="row demo-tiles">
           <div class="span11 centers">
-            <h3>Bridging the Arts or BtheArts is a unique collaboration between the </h3>
-            <h3>University of California, Berkeley and local K-12 school communities including teachers, students and parents.</h3>
-            <h3 style="color: rgba(52, 73, 94, 0.5);">Through expanding access to the arts, we provide students with the tools for critical investigation and analysis. These critical thinking strategies help prepare students to succeed both in and beyond the school environment.</h3>
+            <h3 style="font-size: 24px">Bridging the Arts at University California of Berkeley is a program that engages one K-12 students, UCB students and teachers in Oakland Unified and West Contra Costa Unified School Districts.  The schools we currently serve include Coronado Elementary, Hoover Elementary and Helms Middle School.</h3>
+            <h4 style="color: rgba(52, 73, 94, 0.5); margin-top: 20px">Many public schools in the Bay Area have little or no arts programming or curricula that specifically address the California State Standards.  Bridging the Arts seeks to expand the opportunities and address the social inequalities in arts education by facilitating access to lessons/lesson plans, promoting education successes/retention, and college-going interests.</h4>
+            <h4 style="color: rgba(52, 73, 94, 0.5)">Bridging the Arts provides its students with benefits directly related to arts learning but also to writing, vocabulary, participation, and collaboration. Bridging the Arts projects demonstrate that students who have worked with art processes actively use cognitive skills and problem solving that can be useful in many other subjects.</h4>
+            <h4 style="color: rgba(52, 73, 94, 0.5)">UCB Bridging the Arts Student Instructors are a significant influence and may be the only exposure K-12 students will get to college students. Of note are the transformative abilities of the collaborations to engage, excite, and promote learning. Bridging the Arts is the only program on campus that presents K-12 students and cooperative teachers with the opportunity to integrate art into their pre-existing curricula, providing schools with UCB student instructors, role models and accessible practicing artists. UCB Bridging the Arts students share their knowledge with K-12 schools’ students and teachers while receiving pedagogy in K-12 arts education.</h4>
+            <div class="span6 centers" style="margin-top: 20px;">
+              <img src="../static/images/tealcollage.jpg">
+            </div>
               <!-- <img src="images/icons/Compas@2x.png" alt="Compas@2x" class="tile-image big-illustration"> -->
               <!-- <h3 class="demo-panel-title lefty">UCB ArtsBridge</h3> -->
               <!-- <a class="btn btn-primary btn-large btn-block" href="http://designmodo.com/flat">Get Pro</a> -->
@@ -675,9 +676,9 @@
           </div> -->
         </div> <!-- /tiles -->
 
-        <div class="login">
+<!--         <div class="login">
 
-          <div class="login-screen2">
+          <div class="login-screen2"> -->
 <!--             <div class="login-icon">
               <img src="images/login/icon.png" alt="Welcome to Mail App" />
               <h4>Welcome to <small>Mail App</small></h4>
@@ -697,10 +698,10 @@
               <a class="btn btn-primary btn-large btn-block" href="#">Login</a>
               <a class="login-link" href="#">Lost your password?</a>
             </div> -->
-            <h3 style="font-size: 42px;">Our site is a work in progress!</h3>
+   <!--          <h3 style="font-size: 42px;">Our site is a work in progress!</h3>
             <h4 style="font-size: 24px; padding-top: 10px;">Please bear with us while we continue to build</h4>
           </div>
-        </div>
+        </div> -->
 
 <!--         <div class="row">
           <div class="span9">
@@ -787,7 +788,7 @@
             <p>
 contact Bridging the Arts Lecturer and Program Coordinator:<br>
 Elise Putnam<br>
-info@bthearts.org</p>
+<a href="mailto:info@bthearts.org" style="text-decoration:none">info@bthearts.org</a></p>
           </div> <!-- /span7 -->
 
 <!--           <div class="span5">
