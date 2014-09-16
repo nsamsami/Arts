@@ -1,83 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>UCB Bridging the Arts: BtheArts</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'base.html' %}
+{% block body %}
 
-    <!-- Loading Bootstrap -->
-    <link href="../static/bootstrap/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Loading Flat UI -->
-    <link href="../static/css/flat-ui.css" rel="stylesheet">
-
-    <link rel="shortcut icon" href="../static/images/favicon.ico">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="container">
-      <div id="tippity-top">
-        <div class="demo-headline">
-          <a href="/" style="text-decoration: none; color: #34495e"><h1 class="demo-logo">
-            UCB Bridging the Arts
-            <small style="font-size: 42px;">BtheArts</small>
-          </h1></a>
-        </div> <!-- /demo-headline -->
-
-        <h3 class="demo-panel-title">Resources for</h3>
-        <div class="row demo-row">
-          <div class="span12">
-            <div class="navbar navbar-inverse">
-              <div class="navbar-inner">
-                <div class="container">
-                  <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#nav-collapse-01"></button>
-                  <div class="nav-collapse collapse" id="nav-collapse-01">
-                    <ul class="nav">
-                      <li class="active nav-buttonr"> <!-- class="active" highlights it -->
-                        <a href="/teachers">
-                          Schools & Educators
-                        </a>
-                        <ul class="lefty">
-                          <li><a href="/teachers">Teachers</a></li>
-                          <li><a href="/principals">Principals</a></li>
-                          <li class="active"><a href="/application">Application for BtheArts</a></li>
-                          <li><a href="/progeval">Program Evaluation</a></li>
-                        </ul> <!-- /Sub menu -->
-                      </li>
-                      <li class="nav-buttonr">
-                        <a href="/students">UCB Students</a>
-                        <ul class="lefty">
-                          <li><a href="/studapplication">Application</a></li>
-                          <li><a href="/studcontract">Contract</a></li>
-                          <li><a href="/lessonplantemplate">Lesson Plan Template</a></li>
-                          <li><a href="/samplelessonplans">Sample Lesson Plans</a></li>
-                          <li><a href="/planningcurriculum">Planning Your Curriculum</a></li>
-                          <li><a href="/postproject">Post Your '@home' Project</a></li>
-                        </ul> <!-- /Sub menu -->
-                      </li>
-                      <li class="nav-buttonr">
-                        <a href="/families">K-12 Students & Families</a>
-                        <ul class="lefty">
-                          <li><a href="/projects">@home Projects</a></li>
-                          <li><a href="/gallery">@home Gallery</a></li>
-                          <li><a href="/feedback">Feedback</a></li>
-                        </ul> <!-- /Sub menu -->
-                      </li>
-                      <li class="nav-buttonr">
-                        <a href="/about">About</a>
-                      </li>
-                    </ul>
-                  </div><!--/.nav -->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> <!-- /row -->
-      </div>
       <div id="middle">
 
         <div class="row demo-tiles">
@@ -114,50 +37,6 @@
       </div> <!-- /middle -->
     </div> <!-- /container -->
 
-    <footer class="short-footer">
-      <div class="container">
-        <div class="row">
-          <div class="span7">
-            <h3 class="footer-title">Questions? Comments? Requests?</h3>
-            <p>
-contact Bridging the Arts Lecturer and Program Coordinator:<br>
-Elise Putnam<br>
-<a href="mailto:ucbthearts@gmail.com" style="text-decoration:none">ucbthearts@gmail.com</a></p>
-          </div> <!-- /span7 -->
-
-<!--           <div class="span5">
-            <div  style="background-color: #34495e;" class="login-form">
-              <div class="control-group">
-                <input type="text" class="login-field" value="" placeholder="Enter your name" id="login-name" />
-                <label class="login-field-icon fui-user" for="login-name"></label>
-              </div>
-
-              <div class="control-group">
-                <input type="password" class="login-field" value="" placeholder="Password" id="login-pass" />
-                <label class="login-field-icon fui-lock" for="login-pass"></label>
-              </div>
-
-              <a style="width:313px; margin:auto;" class="btn btn-primary btn-large btn-block" href="#">Login</a>
-              <a class="login-link" href="#">Lost your password?</a>
-            </div>
-          </div> -->
-        </div>
-      </div>
-    </footer>
-    
-    <!-- Load JS here for greater good =============================-->
-    <script src="../static/js/jquery-1.8.3.min.js"></script>
-    <script src="../static/js/jquery-ui-1.10.3.custom.min.js"></script>
-    <script src="../static/js/jquery.ui.touch-punch.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
-    <script src="../static/js/bootstrap-select.js"></script>
-    <script src="../static/js/bootstrap-switch.js"></script>
-    <script src="../static/js/flatui-checkbox.js"></script>
-    <script src="../static/js/flatui-radio.js"></script>
-    <script src="../static/js/jquery.tagsinput.js"></script>
-    <script src="../static/js/jquery.placeholder.js"></script>
-    <script src="../static/js/jquery.stacktable.js"></script>
-    <script src="http://vjs.zencdn.net/c/video.js"></script>
-    <script src="../static/js/application.js"></script>
   </body>
-</html>
+
+{% endblock %}
