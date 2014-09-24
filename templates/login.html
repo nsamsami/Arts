@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block body %}
+        <div class="container">
+            <form role ="form" method="post" action="/validate">
+                <label for="email">Email address</label>
+                <input type="email" name="email" placeholder="Enter email"><br>
+                <label for"password">Password</label> 
+                <input type="password" name="password" placeholder="Password"><br>
+                <a href="register" action="/register" class="register">New User?</a><br>
+                <a id="forgot" href="/forgotpassword">Forgot Password?</a><br>
+                <button type="submit" value="login" name="btn" class="btn btn-primary" id="submit_button">Submit</button>  
+            </form>
+        </div>
+{% endblock %}
