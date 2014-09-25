@@ -1,9 +1,6 @@
 <html>
 <html lang="en">
 
-<script type="text/javascript">
-  !function(a,b){if(void 0===b[a]){b["_"+a]={},b[a]=function(c){b["_"+a].clients=b["_"+a].clients||{},b["_"+a].clients[c.projectId]=this,this._config=c},b[a].ready=function(c){b["_"+a].ready=b["_"+a].ready||[],b["_"+a].ready.push(c)};for(var c=["addEvent","setGlobalProperties","trackExternalLink","on"],d=0;d<c.length;d++){var e=c[d],f=function(a){return function(){return this["_"+a]=this["_"+a]||[],this["_"+a].push(arguments),this}};b[a].prototype[e]=f(e)}var g=document.createElement("script");g.type="text/javascript",g.async=!0,g.src="https://d26b395fwzu5fz.cloudfront.net/3.0.7/keen.min.js";var h=document.getElementsByTagName("script")[0];h.parentNode.insertBefore(g,h)}}("Keen",this);
-</script>
   <head>
     <meta charset="utf-8">
     <title>UCB Bridging the Arts: BtheArts</title>
@@ -21,6 +18,9 @@
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
     <![endif]-->
+    <script type="text/javascript">
+  !function(a,b){if(void 0===b[a]){b["_"+a]={},b[a]=function(c){b["_"+a].clients=b["_"+a].clients||{},b["_"+a].clients[c.projectId]=this,this._config=c},b[a].ready=function(c){b["_"+a].ready=b["_"+a].ready||[],b["_"+a].ready.push(c)};for(var c=["addEvent","setGlobalProperties","trackExternalLink","on"],d=0;d<c.length;d++){var e=c[d],f=function(a){return function(){return this["_"+a]=this["_"+a]||[],this["_"+a].push(arguments),this}};b[a].prototype[e]=f(e)}var g=document.createElement("script");g.type="text/javascript",g.async=!0,g.src="https://d26b395fwzu5fz.cloudfront.net/3.0.7/keen.min.js";var h=document.getElementsByTagName("script")[0];h.parentNode.insertBefore(g,h)}}("Keen",this);
+</script>
   </head>
 
 
@@ -145,6 +145,18 @@ Elise Putnam<br>
     writeKey: "ffaf5c2f9fd1ce0007a788c00508b8fe4d2a2b641cd7e42640675b551c7374daa2b60f3ea07350fe0d82bb7ba7591e0c3f92dfe8f32983b91c660ac76a783bf7302a8c2d8804f0518052358fdf8b639cabf6f6a03c03bcc4b84f69630de9d92893aaa49a23787ede942afaf51af56334",
     readKey: "5749ada8267cf6c4ef23ad2d3974309bff30832e98ce2a16e82e38d1c7cadd93c4eacdfa38e7057a4ea48701991863125f511ea6d79829c47dc9c46ddca96af4b8232126a00ac9008e1ff618dc794ba1b52d5c2240cbd539cad745f9bca6a1d2643bb4dad64f4ef9cc3ed63fa04806ea"
   });
+
+  var purchase = {
+    item: "gadget",
+    price: 25,
+    referrer: document.referrer,
+    keen : {
+      timestamp: new Date().toISOString()
+    }
+  };
+  
+  client.addEvent("purchases",purchase);
+  
 </script>
 
 </html>

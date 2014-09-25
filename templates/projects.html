@@ -1,13 +1,49 @@
 {% extends 'base.html' %}
 {% block body %}
-      <div id="middle">
-        <div class="login">
-          <div class="login-screen2">
-            <h3 style="font-size: 42px;">Our site is a work in progress!</h3>
-            <h4 style="font-size: 24px; padding-top: 10px;">Please bear with us while we continue to build</h4>
-          </div>
+   <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3"> 
+        </div> 
+        <div class="col-md-6" id="campaign_page">     
+            <h1> Submit your work </h1>
+            <h1><small> Upload your image for featuring in the gallery </small></h1><br> 
+            <form method="POST" e">
+                <div class="form-group"> 
+                    <label for="name">Your Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="Your name"><br>
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" name="title" placeholder="Title of your work"><br>
+                    <label for="description">Description</label>
+                    <textarea type="text" class="form-control" name="description" placeholder="Description"></textarea><br>
+                    <label for="image"> Upload your image</label>
+                    <input type='file' accept="image/*" id="preview_btn" name=image>
+                    <img id="preview_img" target="_blank" scr="#" alt="Your image"/><br>
+                    <input type="submit" class="btn btn-primary" id="submit_button" value="Submit"><br>
+                </div> 
+            </form>
         </div>
-      </div> <!-- /middle -->
-    </div> <!-- /container -->
+        <div class="col-md-3"> 
+        </div>     
+    </div>
+</div>
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+           
+            reader.onload = function (e) {
+                document.getElementById('preview_img').style.visibility = "visible";
+                $('#preview_img').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    $("#preview_btn").change(function(){
+        readURL(this);
+    });
+</script>
 
 {% endblock %}
