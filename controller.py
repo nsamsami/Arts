@@ -82,12 +82,19 @@ def families():
 # 	return render_template("gallery.html")
 
 @app.route('/projects', methods=['GET', 'POST'])
-def upload_file():
+def upload_file(user=None):
+    if not session.get('user_id'):
+        flash("Please sign in to create a campaign")
+        return redirect(url_for('login'))
+    user_id = session.get('user_id')
+    user = User.query.get(user_id)
+    print user
     if request.method == 'POST' and 'image' in request.files:
-        image_id = "123.jpg"
+        image_id = "124.jpg"
         filename = images.save(request.files['image'], folder=None, name=image_id) 
         print filename
-        # model.session.commit()
+        user.image_1 = image_id 
+        model.session.commit()
         return redirect(url_for('gallery'))
     else:
     	return render_template("projects.html")
@@ -128,13 +135,19 @@ def login():
 def authenticate(): 
     email = request.form.get('email')
     password = request.form.get('password')
+    print email
+    print password
     user = User.query.filter_by(email=email).one()
+    print user
     if user.authenticate(password):
+        login_user(user)
         session['userId'] = user.id
-        return redirect(url_for('projects'))
+        print "authed"
+        return redirect(url_for('upload_file', user=user))
     else:
-        flash("Invalid username or password")
+        print "not-authed"
         return redirect(url_for('login')) 
+    return ""
 
 
 if __name__ == "__main__":
