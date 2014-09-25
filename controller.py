@@ -7,16 +7,14 @@ from model import Admin, User
 import model
 import forms
 import string
+import config
 
-UPLOAD_FOLDER = '/images'
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config.from_object(config)
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+images = UploadSet('images', IMAGES)
+configure_uploads(app, (images))
 
 @app.route('/')
 def hello():
@@ -85,12 +83,12 @@ def families():
 
 @app.route('/projects', methods=['GET', 'POST'])
 def upload_file():
-    if request.method == 'POST':
-        file = request.files['image']
-        if file and allowed_file(file.filename):
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('uploaded_file',
-                                    filename=filename))
+    if request.method == 'POST' and 'image' in request.files:
+        image_id = "123.jpg"
+        filename = images.save(request.files['image'], folder=None, name=image_id) 
+        print filename
+        # model.session.commit()
+        return redirect(url_for('gallery'))
     else:
     	return render_template("projects.html")
     return ''
