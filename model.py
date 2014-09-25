@@ -58,6 +58,12 @@ class User(Base, UserMixin):
         password = password.encode("utf-8")
         return bcrypt.hashpw(password, self.salt.encode("utf-8")) == self.password
 
+class Image(Base):
+    __tablename__ = "images"
+    id = Column(Integer, primary_key=True)
+    picture = Column(String(128), nullable=True)
+    picture_id = Column(Integer, ForeignKey("users.id"))
+
 # This creates the tables. drop_all is a hack to delete tables and recreate them. Needs a more permanent solution. 
 def create_tables():
     Base.metadata.drop_all(engine)

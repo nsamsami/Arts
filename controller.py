@@ -6,8 +6,17 @@ from flask.ext.uploads import UploadSet, configure_uploads, IMAGES
 from model import Admin, User
 import model
 import forms
+import string
+
+UPLOAD_FOLDER = '/images'
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 @app.route('/')
 def hello():
@@ -61,9 +70,30 @@ def postproject():
 def families():
 	return render_template("families.html")
 
-@app.route('/projects')
-def projects():
-	return render_template("projects.html")
+# @app.route('/projects')
+# def projects():
+# 	return render_template("projects.html")
+
+# @app.route('/projects', methods=["POST"])
+# def projects_upload():
+# 	user_id = session.get('user_id')
+# 	if 'image' in request.files:
+#         filename = images.save(request.files['image'], folder=None, name=image_id) 
+#         user.img = image_id
+#     	model.session.commit()
+# 	return render_template("gallery.html")
+
+@app.route('/projects', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        file = request.files['image']
+        if file and allowed_file(file.filename):
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('uploaded_file',
+                                    filename=filename))
+    else:
+    	return render_template("projects.html")
+    return ''
 
 @app.route('/gallery')
 def gallery():
@@ -77,9 +107,6 @@ def feedback():
 def about():
 	return render_template("about.html")
 
-@app.route('/review')
-def about():
-	return render_template("review.html")
 
 
 # Stuff to make login easier
