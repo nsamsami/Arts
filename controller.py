@@ -1,5 +1,11 @@
 import os
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request, g, session, url_for, flash, send_from_directory
+from flask.ext.login import LoginManager, login_required, login_user, current_user, logout_user
+from flask.ext.markdown import Markdown
+from flask.ext.uploads import UploadSet, configure_uploads, IMAGES
+from model import Admin, User
+import model
+import forms
 
 app = Flask(__name__)
 
@@ -71,9 +77,40 @@ def feedback():
 def about():
 	return render_template("about.html")
 
+@app.route('/review')
+def about():
+	return render_template("review.html")
+
+
+# Stuff to make login easier
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "login"
+
+app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+
+#login and logout stuff here
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
+
+
 @app.route('/login')
 def login():
 	return render_template("login.html")
 
+@app.route("/login", methods=["POST"])
+def authenticate(): 
+    email = request.form.get('email')
+    password = request.form.get('password')
+    user = User.query.filter_by(email=email).one()
+    if user.authenticate(password):
+        session['userId'] = user.id
+        return redirect(url_for('projects'))
+    else:
+        flash("Invalid username or password")
+        return redirect(url_for('login')) 
+
+
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    app.run(debug=True, port=5002)
