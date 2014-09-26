@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, request, g, session, url_for
 from flask.ext.login import LoginManager, login_required, login_user, current_user, logout_user
 from flask.ext.markdown import Markdown
 from flask.ext.uploads import UploadSet, configure_uploads, IMAGES
+from flask.ext.admin import Admin
 from model import Admin, User, Image
 import model
 import forms
@@ -12,6 +13,7 @@ import config
 
 app = Flask(__name__)
 app.config.from_object(config)
+
 
 images = UploadSet('images', IMAGES)
 configure_uploads(app, (images))
@@ -108,7 +110,7 @@ def upload_file(user=None):
 @app.route('/gallery')
 def gallery():
     user_list = User.query.limit(100).all()
-    image_list = Image.query.limit(100).all()
+    image_list = Image.query.filter_by(approved=True).all()
     return render_template("gallery.html", user_list=user_list, image_list=image_list)
 
 @app.route('/feedback')
@@ -187,6 +189,20 @@ def registerUser():
     model.session.commit()
     # model.createUser(email, password)
     return redirect(url_for("login"))
+
+@app.route("/admin")
+def admin():
+    if not session.get('user_id'):
+        return redirect(url_for('login'))
+    user_id = session.get('user_id')
+    user = User.query.get(user_id)
+    if not user.admin == True:
+        return redirect(url_for('hello'))
+    print "is admin"
+    image_list = Image.query.all()
+    return render_template("admin.html", image_list=image_list)
+
+
 
 
 if __name__ == "__main__":

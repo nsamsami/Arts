@@ -50,10 +50,9 @@ class User(Base, UserMixin):
     salt = Column(String(64), nullable=False)
     first_name = Column(String(64), nullable=False)
     last_name = Column(String(64), nullable=False)
-    image_1 = Column(String(64), nullable=True)
-    image_1_title = Column(String(64), nullable=True)
-    image_2 = Column(String(64), nullable=True)
+    admin = Column(Boolean, default=False)
     images = relationship("Image", uselist=True)
+    
 
     def set_password(self, password):
         self.salt = bcrypt.gensalt()
@@ -70,7 +69,7 @@ class Image(Base):
     id = Column(Integer, primary_key=True)
     image_id = Column(String(128), nullable=False)
     title = Column(String(64), nullable=True)
-    approved = Column(Boolean, default=True)
+    approved = Column(Boolean, default=False)
     user_id = Column(Integer, ForeignKey("users.id"))
     user = relationship("User", backref="user")
 
@@ -83,7 +82,7 @@ def create_tables():
 
 def seed():
     Base.metadata.create_all(engine)
-    u = User(email="nahid@gmail.com", image_1_title="Art Photo", first_name="Nahid", last_name="Samsami")
+    u = User(email="nahid@gmail.com", first_name="Nahid", last_name="Samsami", admin=True)
     u.set_password("pass")
     session.add(u)
     v = Image(image_id="abc", title="My image", user_id=u.id)
