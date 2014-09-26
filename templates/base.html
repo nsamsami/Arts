@@ -103,7 +103,12 @@
 contact Bridging the Arts Lecturer and Program Coordinator:<br>
 Elise Putnam<br>
 <a href="mailto:ucbthearts@gmail.com" style="text-decoration:none">ucbthearts@gmail.com</a></p>
-<a href="/login">Log In</a>
+{% if current_user.is_anonymous() %}  
+    <a href="{{url_for("login")}}">Log In</a>
+    {% else %}
+    <a href="{{url_for("logout")}}">Log Out</a>
+    <p id="login_email"><small>Logged in as {{current_user.email}}</small></p>
+    {% endif %}
           </div> <!-- /span7 -->
 
 <!--           <div class="span5">

@@ -94,9 +94,8 @@ def upload_file(user=None):
         filename = images.save(request.files['image'], folder=None, name=image_id) 
         print filename
         title = request.form['title'] 
-        name = request.form['name']
+        description = request.form['description']
         print title 
-        print name 
         user.image_1 = image_id 
         model.session.commit()
         return redirect(url_for('gallery'))
@@ -136,6 +135,13 @@ def load_user(user_id):
 def login():
 	return render_template("login.html")
 
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    session.clear()
+    return redirect(url_for("hello"))
+
 @app.route("/login", methods=["POST"])
 def authenticate(): 
     email = request.form.get('email')
@@ -153,6 +159,31 @@ def authenticate():
         print "not-authed"
         return redirect(url_for('login')) 
     return ""
+
+@app.route("/register")
+def register():
+    return render_template("register.html")
+
+@app.route("/register", methods=["POST"])
+def registerUser():
+    email = request.form.get('email')
+    password = request.form.get('password')
+    first_name = request.form.get('first_name')
+    last_name = request.form.get('last_name')
+    verify = request.form.get('verify')
+    if User.query.filter_by(email=email).all():
+        flash("Email already exists")
+        return redirect(url_for("register"))
+    if password != verify:
+        flash("Passwords do not match")
+        return redirect(url_for("register"))
+    #creates user row and also starter tasks
+    user = User(email=email, first_name=first_name, last_name=last_name)
+    user.set_password(password)
+    model.session.add(user)
+    model.session.commit()
+    # model.createUser(email, password)
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":

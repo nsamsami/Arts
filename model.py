@@ -48,9 +48,10 @@ class User(Base, UserMixin):
     email = Column(String(64), nullable=False)
     password = Column(String(64), nullable=False)
     salt = Column(String(64), nullable=False)
-    title = Column(String(64), nullable=True)
-    name = Column(String(64), nullable=False)
+    first_name = Column(String(64), nullable=False)
+    last_name = Column(String(64), nullable=False)
     image_1 = Column(String(64), nullable=True)
+    image_1_title = Column(String(64), nullable=True)
     image_2 = Column(String(64), nullable=True)
 
     def set_password(self, password):
@@ -70,7 +71,7 @@ def create_tables():
 
 def seed():
     Base.metadata.create_all(engine)
-    u = User(email="nahid@gmail.com", title="Art Photo", name="Nahid Samsami")
+    u = User(email="nahid@gmail.com", image_1_title="Art Photo", first_name="Nahid", last_name="Samsami")
     u.set_password("pass")
     session.add(u)
     session.commit()
