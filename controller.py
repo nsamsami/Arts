@@ -93,6 +93,10 @@ def upload_file(user=None):
         image_id = "124.jpg"
         filename = images.save(request.files['image'], folder=None, name=image_id) 
         print filename
+        title = request.form['title'] 
+        name = request.form['name']
+        print title 
+        print name 
         user.image_1 = image_id 
         model.session.commit()
         return redirect(url_for('gallery'))
@@ -102,7 +106,8 @@ def upload_file(user=None):
 
 @app.route('/gallery')
 def gallery():
-	return render_template("gallery.html")
+    user_list = User.query.limit(100).all()
+    return render_template("gallery.html", user_list=user_list)
 
 @app.route('/feedback')
 def feedback():
