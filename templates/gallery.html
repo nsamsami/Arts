@@ -15,16 +15,21 @@
         <div class="col-md-1">
         </div> 
 
-        {% for user in user_list %}
-        <div><a href="static/images/{{user.image_1}}"><div id="thumbnail" class="img-thumbnail"><img  src="./static/images/{{user.image_1}}" class="testing"></div></a></div>
-        <!-- <h3 id="browse_name">{{user.email}}</h3><br> -->
-        <h3 id="browse_name">{{user.title}}</h3><br> 
-        <h3 id="browse_name">{{user.name}}</h3><br> 
+        {% for image in image_list %}
+        <div><a href="static/images/{{image.image_id}}"><div id="thumbnail" class="img-thumbnail"><img  src="./static/images/{{image.image_id}}" class="testing"></div></a></div> 
+        <h3 id="browse_name">{{image.title}}</h3><br> 
+        <h3 id="browse_name">{{image.first_name}}</h3><br> 
+        <h3 id="browse_name">{{image.last_name}}</h3><br> 
                 </div> 
     	
 		</div> 
-
 		{% endfor %}
+
+        {% for image in image_list %}
+        <h1>{{image.image_id}}</h1>>
+        <h1>{{image.image_ide}}</h1>>
+        <h1>{{image.title}}</h1>>
+        {% endfor %}
 	</div>
     <div id="bottom_padding"></div>
 </div>

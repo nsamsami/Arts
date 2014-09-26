@@ -3,7 +3,7 @@ from flask import Flask, render_template, redirect, request, g, session, url_for
 from flask.ext.login import LoginManager, login_required, login_user, current_user, logout_user
 from flask.ext.markdown import Markdown
 from flask.ext.uploads import UploadSet, configure_uploads, IMAGES
-from model import Admin, User
+from model import Admin, User, Image
 import model
 import forms
 import string
@@ -90,13 +90,15 @@ def upload_file(user=None):
     user = User.query.get(user_id)
     print user
     if request.method == 'POST' and 'image' in request.files:
-        image_id = "124.jpg"
+        image_id = "129.jpg"
         filename = images.save(request.files['image'], folder=None, name=image_id) 
         print filename
         title = request.form['title'] 
         description = request.form['description']
         print title 
-        user.image_1 = image_id 
+        # user.image_1 = image_id 
+        image = Image(image_id=filename, title=title, user_id=user_id)
+        model.session.add(image)
         model.session.commit()
         return redirect(url_for('gallery'))
     else:
@@ -106,7 +108,8 @@ def upload_file(user=None):
 @app.route('/gallery')
 def gallery():
     user_list = User.query.limit(100).all()
-    return render_template("gallery.html", user_list=user_list)
+    image_list = Image.query.limit(100).all()
+    return render_template("gallery.html", user_list=user_list, image_list=image_list)
 
 @app.route('/feedback')
 def feedback():

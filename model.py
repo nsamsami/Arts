@@ -53,6 +53,7 @@ class User(Base, UserMixin):
     image_1 = Column(String(64), nullable=True)
     image_1_title = Column(String(64), nullable=True)
     image_2 = Column(String(64), nullable=True)
+    images = relationship("Image", uselist=True)
 
     def set_password(self, password):
         self.salt = bcrypt.gensalt()
@@ -64,6 +65,17 @@ class User(Base, UserMixin):
         return bcrypt.hashpw(password, self.salt.encode("utf-8")) == self.password
 
 
+class Image(Base):
+    __tablename__ = "images"
+    id = Column(Integer, primary_key=True)
+    image_id = Column(String(128), nullable=False)
+    title = Column(String(64), nullable=True)
+    approved = Column(Boolean, default=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    user = relationship("User", backref="user")
+
+
+
 # This creates the tables. drop_all is a hack to delete tables and recreate them. Needs a more permanent solution. 
 def create_tables():
     Base.metadata.drop_all(engine)
@@ -73,6 +85,10 @@ def seed():
     Base.metadata.create_all(engine)
     u = User(email="nahid@gmail.com", image_1_title="Art Photo", first_name="Nahid", last_name="Samsami")
     u.set_password("pass")
+    session.add(u)
+    v = Image(image_id="abc", title="My image", user_id=u.id)
+    u.image = v
+    session.add(v)
     session.add(u)
     session.commit()
     print "Tables completed"
