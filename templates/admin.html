@@ -23,9 +23,12 @@
                     <h3 id="status" style = "text-align:left">Approved: {{image.approved}}</h3> 
                     <h3 id="browse_name">{{image.first_name}}</h3> 
                     <h3 id="browse_name">{{image.last_name}}</h3>
-                    <form method="POST" id="approve_form" action="">
+                    <form method="POST" id="approve_form" action="/admin/{{image.id}}/approve">
                         <input type="submit" class="btn btn-success btn-lg" name="approve_button" id="approve_button" value="Approve">
                      </form>
+                   <!--  <form method="POST" id="approve_form" action="/admin/{{image.id}}/approve">
+                        <input type="submit" class="btn btn-success btn-lg" name="approve_button" id="approve_button" value="Disapprove">
+                     </form> -->
             <br>
             <br>
                 </div> 

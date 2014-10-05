@@ -203,6 +203,29 @@ def admin():
     return render_template("admin.html", image_list=image_list)
 
 
+@app.route("/admin/<int:id>/approve", methods=["POST"])
+def give_approval(id):
+    if not session.get('user_id'):
+        return redirect(url_for('login'))
+    user_id = session.get('user_id')
+    user = User.query.get(user_id)
+    if not user.admin == True:
+        return redirect(url_for('hello'))
+    print "is admin"
+    image = Image.query.get(id)
+    action = request.form.get("approve_button")
+    if action == "Approve":
+            image.approved = 1
+    model.session.commit()
+        # action = request.form.get("kudos_button")
+        # if applicationion == "Give Kudos":
+        #     campaign.addKudos(session['user_id'])
+        # else:
+        #     campaign.removeKudos(session['user_id'])
+        # model.session.commit()
+    return redirect(url_for("admin", id=id))
+
+
 
 
 if __name__ == "__main__":
