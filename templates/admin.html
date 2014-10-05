@@ -1,13 +1,73 @@
 {% extends 'base.html' %}
 {% block body %}
-  {% for image in image_list %}
-        <div><a href="static/images/{{image.image_id}}"><div id="thumbnail" class="img-thumbnail"><img  src="./static/images/{{image.image_id}}" class="testing"></div></a></div> 
-        <h3 id="browse_name">{{image.title}}</h3><br> 
-        <h3 id="browse_name">{{image.first_name}}</h3><br> 
-        <h3 id="browse_name">{{image.last_name}}</h3><br> 
+
+    <div class="container-fluid" >
+	<div class="row">
+		 <div class="col-md-1">
+        </div> 
+		<div class="col-md-9"> 
+    		<h1>Browse gallery.</h1> 
+            <h1><small>View student projects</small></h1><br> 
+        </div> 
+	</div> 
+    </div>
+    
+    <div class="container-fluid" >
+    {% for image in image_list %}
+        <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class ="col-md-9">
+                <a href="static/images/{{image.image_id}}"><div id="thumbnail" class="img-thumbnail" style="align:left"><img  src="./static/images/{{image.image_id}}" class="testing"></div></a>
+                    <h3 id="browse_name" style = "text-align:left">Title: {{image.title}}</h3>
+                    <h3 id="status" style = "text-align:left">Approved: {{image.approved}}</h3> 
+                    <h3 id="browse_name">{{image.first_name}}</h3> 
+                    <h3 id="browse_name">{{image.last_name}}</h3>
+                    <form method="POST" id="approve_form" action="">
+                        <input type="submit" class="btn btn-success btn-lg" name="approve_button" id="approve_button" value="Approve">
+                     </form>
+            <br>
+            <br>
                 </div> 
-    	
-		</div> 
-	{% endfor %}
+            </div>
+
+            {% endfor %}
+        </div>
+        	
+    		</div> 
+		
+	</div>
+    <div id="bottom_padding"></div>
+</div>
+
+<script type="text/javascript">
+
+$('.testing').load(function() {
+    var width = this.width;
+    var height = this.height;
+    if (width == height) {
+        $(this).css('width', 223);
+        $(this).css('height', 223);
+    } else if (width > height) {
+        $(this).css('height', 223);
+        var offset = ((this.width - 223)/2);
+        $(this).css('clip', "rect(0px," + ((this.width + 223)/2) + "px,223px," + offset + 
+            "px)");
+        $(this).css('margin-left', "-" + offset);
+    } else {
+        $(this).css('width', 223);
+        var offset = ((this.height - 223)/2);
+        $(this).css('clip', "rect(" + offset + "px,223px," + ((this.height + 223)/2) + "px,0px)");
+        $(this).css('margin-top', "-" + offset);
+    }
+});
+
+</script>
+
+var count = new Keen.Query("count", {
+  eventCollection: "pageviews",
+  groupBy: "property",
+  timeframe: "this_7_days"
+});
 
 {% endblock %}
