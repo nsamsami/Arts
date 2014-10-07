@@ -216,6 +216,8 @@ def give_approval(id):
     action = request.form.get("approve_button")
     if action == "Approve":
             image.approved = 1
+    if action == "Disapprove":
+            image.approved = 0
     model.session.commit()
         # action = request.form.get("kudos_button")
         # if applicationion == "Give Kudos":

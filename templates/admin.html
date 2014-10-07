@@ -6,8 +6,8 @@
 		 <div class="col-md-1">
         </div> 
 		<div class="col-md-9"> 
-    		<h1>Browse gallery.</h1> 
-            <h1><small>View student projects</small></h1><br> 
+    		<h1>Browse all images</h1> 
+            <h1><small>Approve images submitted by students</small></h1><br> 
         </div> 
 	</div> 
     </div>
@@ -20,15 +20,14 @@
             <div class ="col-md-9">
                 <a href="static/images/{{image.image_id}}"><div id="thumbnail" class="img-thumbnail" style="align:left"><img  src="./static/images/{{image.image_id}}" class="testing"></div></a>
                     <h3 id="browse_name" style = "text-align:left">Title: {{image.title}}</h3>
-                    <h3 id="status" style = "text-align:left">Approved: {{image.approved}}</h3> 
-                    <h3 id="browse_name">{{image.first_name}}</h3> 
-                    <h3 id="browse_name">{{image.last_name}}</h3>
+                    <h3 id="browse_name">Submitter name: {{image.user.first_name}} {{image.user.last_name}}</h3>
+                    <h3 id="status" style = "text-align:left">Approved: {{image.approved}}</h3>  
                     <form method="POST" id="approve_form" action="/admin/{{image.id}}/approve">
                         <input type="submit" class="btn btn-success btn-lg" name="approve_button" id="approve_button" value="Approve">
                      </form>
-                   <!--  <form method="POST" id="approve_form" action="/admin/{{image.id}}/approve">
+                    <form method="POST" id="approve_form" action="/admin/{{image.id}}/approve">
                         <input type="submit" class="btn btn-success btn-lg" name="approve_button" id="approve_button" value="Disapprove">
-                     </form> -->
+                     </form>
             <br>
             <br>
                 </div> 
@@ -66,11 +65,5 @@ $('.testing').load(function() {
 });
 
 </script>
-
-var count = new Keen.Query("count", {
-  eventCollection: "pageviews",
-  groupBy: "property",
-  timeframe: "this_7_days"
-});
 
 {% endblock %}
