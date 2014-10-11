@@ -30,7 +30,7 @@ class Admin(Base):
     id = Column(Integer, primary_key=True)
     email = Column(String(64), nullable=False)
     password = Column(String(64), nullable=False)
-    salt = Column(String(64), nullable=False)
+    salt = Column(String(64), nullable=True)
  
     def set_password(self, password):
         password = password.encode("utf-8")
@@ -45,7 +45,7 @@ class User(Base, UserMixin):
     id = Column(Integer, primary_key=True)
     email = Column(String(64), nullable=False)
     password = Column(String(64), nullable=False)
-    salt = Column(String(64), nullable=False)
+    salt = Column(String(64), nullable=True)
     first_name = Column(String(64), nullable=False)
     last_name = Column(String(64), nullable=False)
     admin = Column(Boolean, default=False)
