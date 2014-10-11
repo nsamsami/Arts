@@ -1,3 +1,4 @@
+import requests
 import os
 from flask import Flask, render_template, redirect, request, g, session, url_for, flash, send_from_directory
 from flask.ext.login import LoginManager, login_required, login_user, current_user, logout_user
