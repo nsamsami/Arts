@@ -1,5 +1,4 @@
 import config
-import bcrypt
 from datetime import datetime
 import time
 
@@ -13,7 +12,7 @@ from flask.ext.login import UserMixin
 
 # These are imported for uploading files
 from flask import Flask, request, redirect, url_for
-from werkzeug import secure_filename
+
 
 engine = create_engine(config.DB_URI, echo=False)
 session = scoped_session(sessionmaker(bind=engine,
@@ -34,13 +33,12 @@ class Admin(Base):
     salt = Column(String(64), nullable=False)
  
     def set_password(self, password):
-        self.salt = bcrypt.gensalt()
         password = password.encode("utf-8")
-        self.password = bcrypt.hashpw(password, self.salt)
+        self.password = password
 
     def authenticate(self, password):
         password = password.encode("utf-8")
-        return bcrypt.hashpw(password, self.salt.encode("utf-8")) == self.password
+        return password == self.password
 
 class User(Base, UserMixin):
     __tablename__ = "users"
@@ -55,13 +53,12 @@ class User(Base, UserMixin):
     
 
     def set_password(self, password):
-        self.salt = bcrypt.gensalt()
         password = password.encode("utf-8")
-        self.password = bcrypt.hashpw(password, self.salt)
+        self.password = password
 
     def authenticate(self, password):
         password = password.encode("utf-8")
-        return bcrypt.hashpw(password, self.salt.encode("utf-8")) == self.password
+        return password == self.password
 
 
 class Image(Base):

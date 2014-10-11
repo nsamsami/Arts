@@ -14,4 +14,3 @@ Flask-Admin==1.0.8
 requests==2.3.0
 static3==0.5.1
 py-bcrypt==0.3
-bcrypt==1.0.2
