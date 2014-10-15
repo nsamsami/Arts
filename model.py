@@ -1,6 +1,8 @@
 import config
 from datetime import datetime
 import time
+import bcrypt
+
 
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, ForeignKey
@@ -33,12 +35,13 @@ class Admin(Base):
     salt = Column(String(64), nullable=True)
  
     def set_password(self, password):
+        self.salt = bcrypt.gensalt(1)
         password = password.encode("utf-8")
-        self.password = password
+        self.password = bcrypt.hashpw(password, self.salt) 
 
     def authenticate(self, password):
         password = password.encode("utf-8")
-        return password == self.password
+        return bcrypt.hashpw(password, self.salt.encode("utf-8")) == self.password
 
 class User(Base, UserMixin):
     __tablename__ = "users"
@@ -53,12 +56,13 @@ class User(Base, UserMixin):
     
 
     def set_password(self, password):
+        self.salt = bcrypt.gensalt(1)
         password = password.encode("utf-8")
-        self.password = password
+        self.password = bcrypt.hashpw(password, self.salt) 
 
     def authenticate(self, password):
         password = password.encode("utf-8")
-        return password == self.password
+        return bcrypt.hashpw(password, self.salt.encode("utf-8")) == self.password
 
 
 class Image(Base):

@@ -10,6 +10,7 @@ import model
 import forms
 import string
 import config
+import bcrypt
 
 
 app = Flask(__name__)
@@ -154,13 +155,17 @@ def authenticate():
     password = request.form.get('password')
     print email
     print password
-    user = User.query.filter_by(email=email).one()
-    print user
-    if user.authenticate(password):
-        login_user(user)
-        session['userId'] = user.id
-        print "authed"
-        return redirect(url_for('upload_file', user=user))
+    try:
+        user = User.query.filter_by(email=email).one()
+        # print user
+        if user.authenticate(password):
+            login_user(user)
+            session['userId'] = user.id
+            print "authed"
+            return redirect(url_for('upload_file', user=user))
+    except:
+        print "error"   
+        return redirect(url_for('login')) 
     else:
         print "not-authed"
         return redirect(url_for('login')) 
